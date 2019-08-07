@@ -253,7 +253,7 @@ public class SparseMatrix implements Matrix, MatrixMultiplication<SparseMatrix, 
 
         for (int j = 0; j < ncols; j++) {
             for (int i = colIndex[j]; i < colIndex[j + 1]; i++) {
-                y[rowIndex[i]] += get(i) * get(j);
+                y[rowIndex[i]] += get(i) * x[j];
             }
         }
 
@@ -264,7 +264,7 @@ public class SparseMatrix implements Matrix, MatrixMultiplication<SparseMatrix, 
     public double[] axpy(double[] x, double[] y) {
         for (int j = 0; j < ncols; j++) {
             for (int i = colIndex[j]; i < colIndex[j + 1]; i++) {
-                y[rowIndex[i]] += get(i) * get(j);
+                y[rowIndex[i]] += get(i) * x[j];
             }
         }
 
@@ -279,7 +279,7 @@ public class SparseMatrix implements Matrix, MatrixMultiplication<SparseMatrix, 
 
         for (int j = 0; j < ncols; j++) {
             for (int i = colIndex[j]; i < colIndex[j + 1]; i++) {
-                y[rowIndex[i]] += get(i) * get(j);
+                y[rowIndex[i]] += get(i) * x[j];
             }
         }
 
@@ -291,7 +291,7 @@ public class SparseMatrix implements Matrix, MatrixMultiplication<SparseMatrix, 
         Arrays.fill(y, 0.0);
         for (int i = 0; i < ncols; i++) {
             for (int j = colIndex[i]; j < colIndex[i + 1]; j++) {
-                y[i] += get(j) * get(rowIndex[j]);
+                y[i] += get(j) * x[rowIndex[j]];
             }
         }
 
@@ -303,7 +303,7 @@ public class SparseMatrix implements Matrix, MatrixMultiplication<SparseMatrix, 
     public double[] atxpy(double[] x, double[] y) {
         for (int i = 0; i < ncols; i++) {
             for (int j = colIndex[i]; j < colIndex[i + 1]; j++) {
-                y[i] += get(j) * get(rowIndex[j]);
+                y[i] += get(j) * x[rowIndex[j]];
             }
         }
 
@@ -315,7 +315,7 @@ public class SparseMatrix implements Matrix, MatrixMultiplication<SparseMatrix, 
         for (int i = 0; i < ncols; i++) {
             y[i] *= b;
             for (int j = colIndex[i]; j < colIndex[i + 1]; j++) {
-                y[i] += get(j) * get(rowIndex[j]);
+                y[i] += get(j) * x[rowIndex[j]];
             }
         }
 
